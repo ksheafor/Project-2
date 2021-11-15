@@ -1,0 +1,13 @@
+---
+title: "Project 2"
+author: "Kate Sheafor and Amy Portillo-Ramirez"
+date: "11/08/2021"
+output: html_document
+---
+ Conditionals
+  If less than X ratings
+
+```{r}
+plot(cars)
+```
+
