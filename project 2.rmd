@@ -4,10 +4,60 @@ author: "Kate Sheafor and Amy Portillo-Ramirez"
 date: "11/08/2021"
 output: html_document
 ---
- Conditionals
+Conditionals
   If less than X ratings
-
+Loop
+  Colors
+Function
+  No :)
+  
 ```{r}
-plot(cars)
+library(ggplot2)
+books<- read.csv("books.csv")
+books$num_pages <- as.numeric(books$num_pages)
+books$average_rating <- as.numeric(books$average_rating)
+```
+
+original code
+```{r}
+ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+```
+
+assigning colors og
+```{r}
+colors <- c(0:5)
+r<-0:2.9
+y<-3:3.9
+g<-4:5
+assign.colors <- function(color.in){
+colors.as.numbers <- switch(color.in,
+  "red" = r,
+  "yellow"= y,
+  "green"= g
+  )
+return(assign.colors)
+}
+```
+
+
+colors: ave rating <2 red
+        2.5-3.5=yellow
+        3.6-5 green
+if else as conditional (nested)
+for loop with conditional
+```{r}
+library(ggplot2)
+red <- subset(books, average_rating[0:2.5] == "poorratings")
+yellow <- subset(books, average_rating[2.6:] == "yellow")
+green <- subset(books, average_rating == "green")
+
+ggplot(books, mapping=aes(x= average_rating)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill = colors <- c(1:5),
+,color=assign.colors) + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+```
+
+
+omit all ratings 100,000,000>
+```{r}
+ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 ```
 
