@@ -28,7 +28,7 @@ assigning colors og
 colors <- c(0:5)
 
 assign.colors <- function(color.in){
-colors.as.numbers <- switch(color.in,
+color <- switch(color.in,
   "red" = r,
   "yellow"= y,
   "green"= g
@@ -60,6 +60,7 @@ r<-books$average_rating<=2.5
 y<-books$average_rating>2.5
 g<-books$average_rating>4
 rating <- c("last", "average", "first")
+color<- c("red", "yellow", "green")
 ###function###
 bad=head(books$average_rating)
 rank(bad,ties.method = "last")
@@ -69,17 +70,16 @@ best=head(books$average_rating)
 rank(best, ties.method = "first")
 ###conditional###
 x<-books$average_rating
-graphcolor <- function(x) {
-  if (x=="last") 
+graphcolor <- function(x)
+  if (x=="last") {
     color=="red"
     } else if (x=="average"){
              color=="yellow"
     } else if (x=="good"){
                output <-color=="green"
       }
-  (output)=color
 ###GRAPH###
-ggplot(books, aes_string(x= books$average_rating<2.6)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+ggplot(books, aes_string(x= books$average_rating)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill=graphcolor,color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 ```
 Amy's New Code That Works(ish)
 ```{r}
