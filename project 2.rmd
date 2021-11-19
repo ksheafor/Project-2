@@ -45,13 +45,32 @@ colors: ave rating <2 red
         3.6-5 green
 if else as conditional (nested)
 for loop with conditional
+red<-books$average_rating[0:2.5]
+yellow<-books$average_rating[2.6:3.5]
+green<-books$average_rating[3.6:5]
 ```{r}
 library(ggplot2)
-red <- subset(books, average_rating[0:2.5] == "poorratings")
-yellow <- subset(books, average_rating[2.6:] == "yellow")
-green <- subset(books, average_rating == "green")
 
-ggplot(books, mapping=aes(x= average_rating)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill = colors <- c(1:5),
+rating <- c("last", "average", "first")
+
+bad=head(books$average_rating)
+rank(bad,ties.method = "last")
+average=head(books$average_rating)
+rank(average,ties.method = "average")
+best=head(books$average_rating)
+rank(best, ties.method = "first")
+
+if(books$average_rating[0:2.5] == "last") {
+  color("red")
+} else (average == "average", yellow, green) {
+  color (yellow)
+} else {
+  color(green)
+}
+
+
+
+ggplot(books, aes_string(x= books$average_rating)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill = colors <- c(1:5),
 ,color=assign.colors) + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 ```
 
@@ -59,5 +78,7 @@ ggplot(books, mapping=aes(x= average_rating)) + geom_histogram(stat = "bin", bin
 omit all ratings 100,000,000>
 ```{r}
 ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+
+
 ```
 
