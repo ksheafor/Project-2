@@ -37,23 +37,7 @@ return(assign.colors)
 }
 ```
 
-
-#colors: ave rating <2 red
-       2.5-3.5=yellow
-        3.6-5 green
-if else as conditional (nested)
-for loop with conditional
-red<-books$average_rating[0:2.5]
-yellow<-books$average_rating[2.6:3.5]
-green<-books$average_rating[3.6:5]
-
-function(graphcolor){
-if(books$average_rating[0:2.5] == "last") 
-  color==red
-} else (average == "average", ,) {
-  color==yellow
-} else {
-  color==green
+colors: ave rating <2 red
 ```{r}
 library(ggplot2)
 r<-books$average_rating<=2.5
@@ -61,6 +45,7 @@ y<-books$average_rating>2.5
 g<-books$average_rating>4
 rating <- c("last", "average", "first")
 color<- c("red", "yellow", "green")
+
 ###function###
 bad=head(books$average_rating)
 rank(bad,ties.method = "last")
@@ -68,6 +53,7 @@ average=head(books$average_rating)
 rank(average,ties.method = "average")
 best=head(books$average_rating)
 rank(best, ties.method = "first")
+
 ###conditional###
 x<-books$average_rating
 graphcolor <- function(x)
@@ -79,7 +65,7 @@ graphcolor <- function(x)
                output <-color=="green"
       }
 ###GRAPH###
-ggplot(books, aes_string(x= books$average_rating)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill=graphcolor,color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+ggplot(books, aes(x= average_rating),y= ratings_count) + geom_histogram(stat="bin", binwidth = 0.05, fill="red",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 ```
 Amy's New Code That Works(ish)
 ```{r}
@@ -98,7 +84,5 @@ ratingcount <- function(input){
       }
 
 ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
-
-
 ```
 

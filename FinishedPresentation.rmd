@@ -27,3 +27,37 @@ ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.
 ```
 
 AJ suggested to have the number of pages on the y axis and the number ratings on the X axis. They were already present, but too close together to read. In adding the codes "books$num_pages <-as.numeric(books$num_pages)" and "books$average_rating <- as.numeric(books$average_rating)" the data was properly converted to read the data as a number set and not as a character set. This simplified the clutter on both the x and y axis and allowed the data to be more easily understood. Units were added to the graphs to clarify the scale that they were set on as Warner suggested. Any excess writing and code was removed, and the codes "library(ggplot2)" and "books<- read.csv("books.csv")" were moved to a chunk at the begining for best practices.
+
+
+
+New Code
+```{r}
+colors <- c(0:5)
+
+assign.colors <- function(color.in){
+color <- switch(color.in,
+  "red" = r,
+  "yellow"= y,
+  "green"= g
+  )
+return(assign.colors)
+}
+```
+
+
+#colors: ave rating <2 red
+       2.5-3.5=yellow
+        3.6-5 green
+if else as conditional (nested)
+for loop with conditional
+red<-books$average_rating[0:2.5]
+yellow<-books$average_rating[2.6:3.5]
+green<-books$average_rating[3.6:5]
+
+function(graphcolor){
+if(books$average_rating[0:2.5] == "last") 
+  color==red
+} else (average == "average", ,) {
+  color==yellow
+} else {
+  color==green
