@@ -61,25 +61,42 @@ y<-books$average_rating>2.5
 g<-books$average_rating>4
 rating <- c("last", "average", "first")
 ###function###
-
+bad=head(books$average_rating)
+rank(bad,ties.method = "last")
+average=head(books$average_rating)
+rank(average,ties.method = "average")
+best=head(books$average_rating)
+rank(best, ties.method = "first")
 ###conditional###
 x<-books$average_rating
 graphcolor <- function(x) {
   if (x=="last") 
-    output <- color==red
+    color=="red"
     } else if (x=="average"){
-               color==yellow
-    }else if (x=="good"){
-               output <-color==green
+             color=="yellow"
+    } else if (x=="good"){
+               output <-color=="green"
       }
   (output)=color
 ###GRAPH###
 ggplot(books, aes_string(x= books$average_rating<2.6)) + geom_histogram(stat = "bin", binwidth = 0.05 , fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 ```
+Amy's New Code That Works(ish)
+```{r}
+r<-books$average_rating<=2.5
+g<-books$average_rating<=3.5
+b<-books$average_rating>=3.6
+ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill=rgb(43, 228, 178, maxColorValue = 255),color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
+```
 
 
 omit all ratings 100,000,000>
 ```{r}
+ratingcount <- function(input){
+  if (input==books$ratings_count)
+    output <- omit(ratings_count>100000000)
+      }
+
 ggplot(books, aes(x= average_rating)) + geom_histogram(stat="bin", binwidth = 0.05, fill="cornflowerblue",color="black") + xlab("Average Rating (0-5)") + ylab("Number of Ratings (millions)")
 
 
